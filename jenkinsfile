@@ -11,7 +11,7 @@ pipeline {
 
         APP_NAME = 'register-app-pipeline'
         DOCKER_USER = 'akshaydudwadkar'
-        DOCKER_PASS = credentials('dockerhub')
+        DOCKER_PASS = credentials('Dockerhub')
 
         DOCKER_IMAGE = "${DOCKER_USER}/${APP_NAME}"
         IMAGE_TAG = "${BUILD_NUMBER}"

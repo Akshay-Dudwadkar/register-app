@@ -29,9 +29,12 @@ pipeline {
         stage("SonarQube Analysis"){
            steps {
             script{
-               withSonarQubeEnv('sonarqube-server') {
-                sh 'mvn clean verify sonar:sonar'  
-                }
+              withSonarQubeEnv('sonarqube-server') {
+             sh """
+             mvn clean verify sonar:sonar \
+             -Dsonar.login=$SONAR_AUTH_TOKEN
+             """
+              } 
             }
           }    
         }

@@ -4,6 +4,9 @@ pipeline {
         jdk  'Java17'
         maven 'Maven3'
     }
+    environment {
+        SONAR_HOME = tool name: 'sonarqube-server'
+    }
 
     stages {
         stage('Cleanup Workspace') {
@@ -29,8 +32,9 @@ pipeline {
         stage("SonarQube Analysis"){
            steps {
             script{
-                withSonarQubeEnv(credentialsId: 'jenkins-sonar') {
-                    sh 'mvn sonar:sonar'
+                withSonarQubeEnv("sonarqube-server") {
+                sh 'mvn sonar:sonar' 
+                   
                 }
             }
           }    

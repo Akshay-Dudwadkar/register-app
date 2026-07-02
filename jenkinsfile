@@ -27,16 +27,17 @@ pipeline {
             }
         }
         stage('SonarQube Analysis') {
-          steps {
-           withSonarQubeEnv('sonarqube-server') {
-             withCredentials([string(credentialsId: 'jenkins-sonar', variable: 'SONAR_TOKEN')]) {
-                sh """
-                mvn clean verify sonar:sonar \
-                -Dsonar.login=$SONAR_TOKEN
-                """
-            }
-        }
-     }
+        steps {
+         withSonarQubeEnv('sonarqube-server') {
+            sh """
+            mvn sonar:sonar \
+            -Dsonar.projectKey=register-app \
+            -Dsonar.projectName=register-app \
+            -Dsonar.host.url=http://54.88.198.4:9000
+            """
+         }
+    }
+}
  
     }
     }

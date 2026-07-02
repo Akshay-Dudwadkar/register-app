@@ -6,6 +6,10 @@ pipeline {
         maven 'Maven3'
     }
 
+    environment {
+        SONAR_TOKEN = credentials('jenkins-sonar')
+    }
+
     stages {
 
         stage('Cleanup Workspace') {
@@ -35,7 +39,8 @@ pipeline {
                     mvn sonar:sonar \
                     -Dsonar.projectKey=register-app \
                     -Dsonar.projectName=register-app \
-                    -Dsonar.host.url=http://54.88.198.4:9000
+                    -Dsonar.host.url=http://54.88.198.4:9000 \
+                    -Dsonar.login=$SONAR_TOKEN
                     """
                 }
             }

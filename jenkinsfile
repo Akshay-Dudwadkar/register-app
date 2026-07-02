@@ -4,10 +4,7 @@ pipeline {
         jdk  'Java17'
         maven 'Maven3'
     }
-    environment {
-        SONAR_HOME = tool name: 'sonarqube-server'
-    }
-
+    
     stages {
         stage('Cleanup Workspace') {
             steps {

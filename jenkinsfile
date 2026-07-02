@@ -7,7 +7,7 @@ pipeline {
     }
 
     environment {
-        SONAR_HOME  = tool 'sonarqube-server'
+        SONAR_HOME  = tool 'sonar'
     }
 
     stages {
@@ -34,7 +34,7 @@ pipeline {
 
         stage('SonarQube Analysis') {
             steps {
-                withSonarQubeEnv('sonarqube-server') {
+                withSonarQubeEnv('sonar') {
                     sh   """
                     $SONAR_HOME/bin/sonar-scanner \
                     -Dsonar.projectKey=register-app \

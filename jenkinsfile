@@ -30,7 +30,7 @@ pipeline {
            steps {
             script{
                 withSonarQubeEnv("sonarqube-server") {
-                ${SONAR_HOME}/bin/sonar-scanner 
+                SH 'mvn sonar:sonar'
                    
                 }
             }

@@ -33,7 +33,7 @@ pipeline {
            steps {
             script{
                 withSonarQubeEnv("sonarqube-server") {
-                sh 'mvn sonar:sonar' 
+                ${SONAR_HOME}/bin/sonar-scanner 
                    
                 }
             }
